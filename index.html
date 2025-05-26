@@ -13,14 +13,18 @@
 
     <title>Pokedex</title>
 </head>
+
+
 <body onload="renderCards()">
 
 <header class="flexR" id="top">
-    <div class="flexR logoName">
-        <img class="logo" src="./img/Pokémon_logo.png" alt="Logo">
-        <p> Podex </p>
-    </div>
-    <label> <input type="search" placeholder="Suchen"> </label>
+    <a href="./index.html">
+            <img class="logo" src="./img/Pokémon_logo.png" alt="Logo">
+        </a>
+
+    <label class="search-bar">
+        <input type="search" placeholder="Suchen">
+    </label>
 </header>
 
 <main class="flexC">
@@ -63,6 +67,12 @@
     <a href="./Datenschutz.html">Datenschutz</a>
 
 </footer>
+
+<!-- script -->
+<script src="./scripts/Templates.js"></script>
+<script src="./main.js"></script>
+<script src="./scripts/Pizzeria.js"></script>
+
 
 </body>
 </html>

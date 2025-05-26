@@ -4,15 +4,19 @@
     margin: 16px;
 }
 
-.logoName {
-    justify-content: left !important;
-}
-
 header{
     justify-content: space-between !important;
     width: 100%;
 
 }
+
+.search-bar{
+    border: #2c5dd9 solid 2px;
+    border-radius: 8px;
+    margin-right: 8px;
+}
+
+
 main{
     flex: 1;
 }
