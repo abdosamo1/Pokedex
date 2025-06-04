@@ -10,49 +10,76 @@
     <link rel="stylesheet" href="./styles/standardCss.css">
     <link rel="stylesheet" href="./main.css">
 
+    <!-- icons -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 
     <title>Pokedex</title>
 </head>
 
 
-<body onload="renderCards()">
+<body onload="renderCards()" id="body">
 
 <header class="flexR" id="top">
     <a href="./index.html">
-            <img class="logo" src="./img/Pokémon_logo.png" alt="Logo">
-        </a>
+        <img class="logo" src="./img/Pokémon_logo.png" alt="Logo">
+    </a>
 
-    <label class="search-bar">
-        <input type="search" placeholder="Suchen">
-    </label>
+    <div class="search-container">
+        <label class="search-bar">
+            <input type="search"
+                   id="pokemon-search-input"
+                   onfocus="showSearchHint()"
+                   placeholder="Pokémon Suchen"
+                   minlength="3"
+                   oninput="handleSearchInput()">
+        </label>
+        <span class="search-hint hidden" id="search-hint-message">Mindestens 3 Zeichen eingeben</span>
+    </div>
+
 </header>
+
 
 <main class="flexC">
 
+    <div class="spinner-container " id="loading-spinner">
+        <div class="spinner" id="spinner">
+        </div>
+        <span> Loading ...</span>
+    </div>
 
     <div class="overlay d_none" id="overlay">
         <div class="overlay-container">
             <div class="overlay-top">
-
+                <button onclick="toggleOverlay()">
+                    <i class="material-icons">close</i>
+                </button>
             </div>
 
-            <div class="overlay-bottom">
-
+            <div class="overlay-content">
+                <div id="selectedCard"></div>
             </div>
 
-            <div class="overlay-btns">
+            <div class="overlay-bottom flexR spaceBetween">
+                <button class="nav-buttons" id="previousButton" onclick="previousCard()">
+                    <i class="material-icons">chevron_left</i>
+                </button>
 
-                <button class="nav-buttons" id="previousButton"> <</button>
-
-                <button class="nav-buttons" id="nextButton"> ></button>
-
+                <button class="nav-buttons" id="nextButton" onclick="nextCard()">
+                    <i class="material-icons">chevron_right</i>
+                </button>
             </div>
+
+
         </div>
     </div>
 
-    <div id="PodexCards">
+    <div id="PodexCards" class="PodexCards">
 
     </div>
+
+    <button id="load-more-button" onclick="renderCards()">Mehr Pokémon laden</button>
 
 </main>
 
@@ -71,7 +98,6 @@
 <!-- script -->
 <script src="./scripts/Templates.js"></script>
 <script src="./main.js"></script>
-<script src="./scripts/Pizzeria.js"></script>
 
 
 </body>
