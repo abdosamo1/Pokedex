@@ -42,7 +42,7 @@ input{
     align-items: center;
     flex-direction: column;
     gap: 16px;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     height: 100vh;
@@ -72,7 +72,7 @@ input{
     animation: spin 1s linear infinite;
 }
 
-.no-scroll{
+body.no-scroll{
     overflow: hidden;
 }
 
@@ -257,7 +257,7 @@ button{
 }
 
 .pokemon-card h2 {
-    margin: 10px 0;
+    margin: 8px 0;
     background: #ffffff;
     border-radius: 8px;
 }
@@ -308,3 +308,80 @@ footer a{
     color: black;
 }
 
+@media (max-width: 880px) {
+
+    *{
+        font-size: medium;
+    }
+
+    header{
+        padding: 24px;
+    }
+
+    .search-hint {
+        font-size: x-small !important;
+    }
+
+    .overlayImg{
+        width:136px;
+    }
+
+    .overlay-container {
+        width: 432px;
+        height: 540px;
+    }
+
+    .PodexCards{
+        padding: 0 16px;
+    }
+
+    .pokemon-card {
+        width: 176px;
+        height: 352px;
+    }
+
+    .pokemon-card img {
+        width: 112px;
+        margin-bottom: 8px;
+    }
+
+}
+
+@media (max-width: 465px) {
+
+    *{
+        font-size: small;
+    }
+
+    header{
+        padding: 16px;
+    }
+
+    .search-hint {
+        font-size: xx-small !important;
+    }
+
+    .overlayImg{
+        width:136px;
+    }
+
+    .overlay-container {
+        width: 296px;
+        height: 540px;
+    }
+
+    .PodexCards{
+        padding: 0 8px;
+    }
+
+    .pokemon-card {
+        width: 160px;
+        height: 320px;
+    }
+
+    .pokemon-card img {
+        width: 112px;
+        margin-bottom: 8px;
+    }
+
+}

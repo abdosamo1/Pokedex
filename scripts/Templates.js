@@ -1,6 +1,6 @@
 
 function addPokieCard(pokemonData) {
-    return`<div class="pokemon-card ${pokemonData.types[0].type.name}" onclick="showCard('${pokemonData.id}')">
+    return`<div class="pokemon-card ${pokemonData.types[0].type.name}" onclick="showCard('${pokemonData.id} ')" >
         <img src="${pokemonData.sprites.front_default || pokemonData.sprites.other?.['official-artwork']?.front_default }" alt="${pokemonData.name}">
         <h2 class="P_8">${(pokemonData.name).toUpperCase()}</h2>
         <p class="P_8">ID: #${pokemonData.id}</p>

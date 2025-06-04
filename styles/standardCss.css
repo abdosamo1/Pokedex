@@ -55,3 +55,9 @@ a:hover {
 .P_8{
     padding: 8px;
 }
+
+@media (min-width : 1750px) {
+    html{
+        margin: auto;
+    }
+}

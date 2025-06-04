@@ -7,7 +7,7 @@ const searchHintMessage = document.getElementById('search-hint-message');
 let allPokemonNames = [];
 const overlay = document.getElementById('overlay');
 let currentOverlayPokemonId = null;
-const currentActivePokemonList = [];
+let currentActivePokemonList = [];
 let currentOverlayPokemonIndex = -1;
 const overlayContent = document.getElementById('selectedCard');
 const prevButton = document.getElementById('previousButton');
@@ -28,11 +28,10 @@ async function createPokemonList(){
         const result = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
         const pokemonList = await result.json();
         const pokemonUrls = pokemonList.results.map(pokemon => pokemon.url);
-
+        currentActivePokemonList.push(...pokemonList.results);
         for (const url of pokemonUrls) {
             await createPokemonCard(url);
         }
-
         offset += limit;
 
     } catch (error) {
@@ -56,7 +55,7 @@ async function createPokemonCard(pokemonUrl) {
 function enableSpinner() {
    loadingSpinner.classList.remove('hidden');
    loadMoreButton.disabled = true;
-    body.classList.add('no-scroll');
+   body.classList.add('no-scroll');
 }
 
 function disableSpinner() {
@@ -163,6 +162,8 @@ async function renderSearchedCards(searchTerm) {
     const pokemonUrlsToRender = pokemonToRender.map(pokemon => pokemon.url);
     PodexCards.innerHTML = '';
     offset = 0;
+    currentActivePokemonList = [];
+    currentActivePokemonList.push(...pokemonToRender);
 
     for (const url of pokemonUrlsToRender) {
         await createPokemonCard(url);
@@ -174,19 +175,26 @@ async function renderSearchedCards(searchTerm) {
     }
 }
 
-function toggleOverlay() {
+function openOverlay() {
     overlay.classList.toggle("d_none");
+    body.style.overflow = 'hidden';
+}
+
+function closeOverlay() {
+    overlay.classList.add('d_none');
+    body.style.overflow = 'visible';
 }
 
 async function showCard(pokemonId) {
-    toggleOverlay();
+    openOverlay()
     currentOverlayPokemonIndex = currentActivePokemonList.findIndex(p => {
         const urlParts = p.url.split('/');
         const idFromUrl = urlParts[urlParts.length - 2];
         return idFromUrl === pokemonId.toString();
     });
     enableSpinner()
-    showSelectedCard(pokemonId).then(disableSpinner)
+    showSelectedCard(pokemonId).then(
+        disableSpinner)
 }
 
 async function showSelectedCard(pokemonId) {
@@ -203,25 +211,21 @@ async function showSelectedCard(pokemonId) {
                 return idFromUrl === currentOverlayPokemonId.toString();
             });
         }
-
         prevButton.disabled = currentOverlayPokemonIndex <= 0 || currentActivePokemonList.length === 0;
         nextButton.disabled = currentOverlayPokemonIndex >= currentActivePokemonList.length - 1 || currentOverlayPokemonIndex === -1 || currentActivePokemonList.length === 0;
-
     } catch (error) {
         console.error('Fehler beim Laden oder Anzeigen der ausgewählten Karte:', error);
         overlayContent.innerHTML = `<p style="color: red;">Fehler beim Laden der Pokémon-Details für '${pokemonId}'.</p>`;
     }
 }
 
-
 async function nextCard() {
     if (currentActivePokemonList.length === 0 || currentOverlayPokemonIndex === -1) return;
 
     if (currentOverlayPokemonIndex < currentActivePokemonList.length - 1) {
         currentOverlayPokemonIndex++;
-        const nextPokemonEntry = currentActivePokemonList[currentOverlayPokemonIndex];
-        // Extrahiere ID aus URL oder verwende Namen
-        const urlParts = nextPokemonEntry.url.split('/');
+        const nextPokemon = currentActivePokemonList[currentOverlayPokemonIndex];
+        const urlParts = nextPokemon.url.split('/');
         const nextPokemonId = urlParts[urlParts.length - 2];
         await showSelectedCard(nextPokemonId);
     }
