@@ -357,6 +357,7 @@ footer a{
 
     .pokemon-card img {
         width: 112px;
+        height: 112px;
         margin-bottom: 8px;
     }
 
@@ -394,9 +395,5 @@ footer a{
         height: 320px;
     }
 
-    .pokemon-card img {
-        width: 112px;
-        margin-bottom: 8px;
-    }
 }
 
