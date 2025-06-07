@@ -24,7 +24,7 @@ function pokemonStats(pokemonData) {
         <div class="flexR pokemonStats">
             ${pokemonData.stats.map(stat => {
                 return `<div class="flexC">
-                            <b> ${to3abbreviation((stat.stat.name.replace('special-', 's. ').replace('speed', 'pac')).toUpperCase())}:</b>
+                            <b> ${toThreeAbbreviation((stat.stat.name.replace('special-', 's. ').replace('speed', 'pac')).toUpperCase())}:</b>
                                 ${stat.base_stat}
                         </div>`;
                 }).join('')}

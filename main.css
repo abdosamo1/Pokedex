@@ -1,5 +1,5 @@
 .logo{
-    width: 80px;
+    width: 160px;
     height: auto;
 }
 
@@ -10,6 +10,10 @@ header{
     position: sticky;
     top: 0;
     z-index: 1000;
+    border-bottom: black solid 1px;
+    -webkit-box-shadow: 0 10px 22px 6px rgba(232, 231, 231, 0.59);
+    box-shadow: 0 10px 22px 6px rgba(172, 171, 171, 0.59);
+    margin-bottom: 80px;
 }
 
 .search-container {
@@ -108,16 +112,27 @@ h2{
 
 .overlayImg{
     width:180px;
-    height:auto;
+    height:180px;
     margin: 15px;
     background: rgba(255,255,255,0.5);
     border-radius: 8px; padding: 5px;
 }
 
+
 .material-icons{
     border-radius: 50%;
     border: black solid 2px;
     margin: 16px;
+}
+
+.no_hover:hover{
+    cursor: default !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.material-icons.disabled{
+    border-color: rgba(16, 16, 16, 0.3) !important;
 }
 
 .material-icons:hover{
@@ -383,5 +398,5 @@ footer a{
         width: 112px;
         margin-bottom: 8px;
     }
-
 }
+
